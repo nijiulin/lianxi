@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: #151516;
+            font-family: "微软雅黑";
+        }
+        #div1{
+            width: 750px;
+            height: 500px;
+            border: 10px solid #a0ff2a;
+            position: relative;
+            margin: 0 auto;
+        }
+        span{
+            background: rgba(255, 63, 79, 0.30);
+            top: 0;
+        }
+        p{
+            background: rgba(0, 48, 255, 0.30);
+            bottom: 0;
+        }
+        span,p{
+            height: 30px;
+            width: 100%;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            line-height: 30px;
+            position: absolute;
+            left: 0;
+        }
+        ul{list-style: none}
+        #ul1{
+            width: 750px;
+            height: 500px;
+        }
+        #ul1 li{
+            display: none;
+            position: absolute;
+            width: 750px;
+            height: 500px;
+        }
+        #ul2{
+            position: absolute;
+            left: -12px;
+            bottom: -45px;
+            width: 780px;
+        }
+        #ul2 li{
+            cursor: pointer;
+            float: left;
+            margin-left: 2px;
+            width: 30px;
+            height: 30px;
+            background: #4fcf45;
+            color: #ffffff;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 50%;
+            font-size: 14px;
+        }
+        #div1 .active { background: #252dff; }
+    </style>
+</head>
+<body>
+<div id="div1">
+    <ul id="ul1">
+        <li style="background: url('img/1.jpg')"></li>
+        <li style="background: url('img/2.jpg')"></li>
+        <li style="background: url('img/3.jpg')"></li>
+        <li style="background: url('img/4.jpg')"></li>
+        <li style="background: url('img/5.jpg')"></li>
+        <li style="background: url('img/6.jpg')"></li>
+        <li style="background: url('img/7.jpg')"></li>
+        <li style="background: url('img/8.jpg')"></li>
+        <li style="background: url('img/9.jpg')"></li>
+        <li style="background: url('img/10.jpg')"></li>
+        <li style="background: url('img/11.jpg')"></li>
+        <li style="background: url('img/12.jpg')"></li>
+        <li style="background: url('img/13.jpg')"></li>
+        <li style="background: url('img/14.jpg')"></li>
+        <li style="background: url('img/15.jpg')"></li>
+        <li style="background: url('img/16.jpg')"></li>
+        <li style="background: url('img/17.jpg')"></li>
+        <li style="background: url('img/18.jpg')"></li>
+        <li style="background: url('img/19.jpg')"></li>
+        <li style="background: url('img/20.jpg')"></li>
+        <li style="background: url('img/21.jpg')"></li>
+        <li style="background: url('img/22.jpg')"></li>
+        <li style="background: url('img/23.jpg')"></li>
+        <li style="background: url('img/24.jpg')"></li>
+    </ul>
+    <span>图片数量</span>
+    <p>图片说明</p>
+    <ul id="ul2"></ul>
+</div>
+<script src="js/jquery-1.11.1.min.js"></script>
+<script>
+    var arrimg = ['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg','img/5.jpg','img/6.jpg'
+        ,'img/7.jpg','img/8.jpg','img/9.jpg','img/10.jpg','img/11.jpg','img/12.jpg'
+        ,'img/13.jpg','img/14.jpg','img/15.jpg','img/16.jpg','img/17.jpg','img/18.jpg'
+        ,'img/19.jpg','img/20.jpg','img/21.jpg','img/22.jpg','img/23.jpg','img/24.jpg'];
+    var arrtext = ['美女1','美女2','美女3','美女4','美女5','美女6','美女7','美女8','美女9','美女10'
+        ,'美女11','美女12','美女13','美女14','美女15','美女16','美女17','美女18','美女19','美女20'
+        ,'美女21','美女22','美女23','美女24'];
+    var num = 0;
+    var timer = null;
+    var aul = null;
+    for( var i=0; i<arrtext.length; i++ ){
+        $("#ul2").html('<li>'+1+'</li><li>'+2+'</li><li>'+3+'</li><li>'+4+'</li><li>'+5+'</li>' +
+                '<li>'+6+'</li><li>'+7+'</li><li>'+8+'</li><li>'+9+'</li><li>'+10+'</li>' +
+                '<li>'+11+'</li><li>'+12+'</li><li>'+13+'</li><li>'+14+'</li><li>'+15+'</li>' +
+                '<li>'+16+'</li><li>'+17+'</li><li>'+18+'</li><li>'+19+'</li><li>'+20+'</li><li>'+21+'</li>' +
+                '<li>'+22+'</li><li>'+23+'</li><li>'+24+'</li>');
+    }
+    //初始化
+    first();
+    function first(){
+        $("#ul1 li").eq(num).fadeIn(700).siblings().fadeOut(700);
+        $("#ul2").find("li").eq(num).addClass("active").siblings().removeClass("active");
+        $('p').text(arrtext[num]);
+        $('span').text(num+1+'/'+arrimg.length);
+
+    }
+    //自动轮播
+    function autoPlay(){
+        timer = setInterval(function(){
+            num ++;
+            num%=arrimg.length;
+            first();
+        },2000)
+    }
+    autoPlay();
+    //移入移出暂停效果
+    $("#div1").hover(function(){
+        clearInterval(timer)
+    },function(){
+        autoPlay();
+    });
+
+    //li hover 效果
+    $("#ul2 li").hover(function(){
+      var Index = $(this).index();
+        num = Index;
+        first();
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body,ul,li,div{
+            margin: 0;
+            padding: 0;
+        }
+        .ment{
+            margin-top: 50px;
+            margin-left: 200px;
+        }
+        .main{
+            width: 574px;
+            margin-left: 80px;
+        }
+        .func{
+            width: 750px;
+            margin-left: 70px;
+        }
+        .show_title{
+            border: #9f9f9f solid 1px;
+            height: 32px;
+        }
+        .show_title ul li{
+            height: 32px;
+            border-right: #9f9f9f solid 1px;
+            float: left;
+            list-style-type: none;
+            line-height: 30px;
+            text-align: center;
+            border-left: none;
+        }
+        .show{
+            width: 571px;
+            height: 150px;
+            overflow-y: scroll;
+            border: #9f9f9f solid 1px;
+        }
+        .show ul li{
+            height: 30px;
+            border: #9f9f9f solid 1px;
+            float: left;
+            list-style-type: none;
+            line-height: 30px;
+            text-align: center;
+            border-left: none;
+            border-top: none;
+        }
+        .allmoney ul li{
+            height: 30px;
+            border: #9f9f9f solid 1px;
+            float: left;
+            list-style-type: none;
+            line-height: 30px;
+            text-align: center;
+        }
+        .show button{
+            display: none;
+            cursor: pointer;
+            float: right;
+        }
+        .show ul:hover button{
+            display: block;
+        }
+        #searval{
+            margin-left: 40px;
+        }
+        .relist{
+            height: 31px;
+        }
+    </style>
+</head>
+<body>
+<div class="ment">
+    <div class="func">
+        事件<input type="text" id="things"/>
+        &nbsp;钱&nbsp;<input type="text" id="money"/>
+        日期<input type="date" id="date"/>
+        <input type="button" onclick="getinfo()" id="increp" value="+"/>
+        <input type="text" id="searval"/>
+        <!--<input type="date" id="begdate"/>-->
+        <!--<input type="date" id="enddate"/>-->
+        <button onclick="search()">查找</button>
+    </div>
+    <div class="main">
+        <div class="show_title">
+            <ul>
+                <li style="width: 50px">编号</li>
+                <li style="width: 200px">事件</li>
+                <li style="width: 200px">时间</li>
+                <li style="width: 118px">金钱</li>
+            </ul>
+        </div>
+        <div class="show" id="show">
+            <ul>
+                <li style="width: 50px">1</li>
+                <li style="width: 200px">1</li>
+                <li style="width: 200px">1</li>
+                <li style="width: 100px">1</li>
+            </ul>
+        </div>
+        <div class="allmoney">
+            <ul>
+                <li style="width: 50px">合计</li>
+                <li id="allmoney" style="width: 520px"></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+    function $(id){
+        return document.getElementById(id);
+    }
+    function getinfo(){
+        var thing = $("things").value;
+        var huamoney = $("money").value;
+        var huashijian = $("date").value;
+        if(thing == "" || huamoney == "" || huashijian == ""){
+            alert("未填写完全!")
+        }else{
+            if(idval == 0) {
+                incinfo(thing,huashijian,huamoney);
+            }else{
+                repinfo(thing,huashijian,huamoney);
+                $("increp").value = "+";
+                var moneyrec = $("show").getElementsByTagName("ul");
+                for(var i = 0;i<moneyrec.length;i++){
+                    moneyrec[i].style.backgroundColor = "#fff";
+                }
+            }
+        }
+    }
+
+var db = openDatabase('test','','',3000);
+var tempId = "";
+var idval = 0;
+
+window.onload = function(){
+        searinfo();
+    }
+
+    $("money").onblur = function() {
+        var temp = $("money").value;
+        console.log(temp);
+        var reg=/^[0-9]{1,12}$/;
+        var stat =  reg.test(temp);
+        console.log(stat);
+        if(!stat){
+            alert("请输入正确的数字!");
+        }
+    }
+
+//db.transaction(function(tx){
+//    tx.executeSql('drop table t_money',[],
+//            function (res){
+//                console.log(res);
+//            },function(err){
+//                console.log(err);
+//            });  // executeSql 作为执行SQL的方法。
+//    // 所有的sql 语句都在这里执行
+//});   // transaction使用一个回调函数作为参数
+
+db.transaction(function(tx){
+    tx.executeSql('create table if not exists t_money' +
+                    '(m_id integer PRIMARY KEY AUTOINCREMENT,' +
+                    'm_thing varchar(50),m_date varchar(50),m_money int)',[],
+            function (t,res){
+                console.log(res);
+            },function(t,err){
+                console.log(err);
+            });  // executeSql 作为执行SQL的方法。
+    // 所有的sql 语句都在这里执行
+    });   // transaction使用一个回调函数作为参数
+
+
+
+//添加数据
+function incinfo(req1,req2,req3){
+    db.transaction(function(tx){
+        tx.executeSql('insert into t_money VALUES(null,?,?,?)',[req1,req2,req3],
+            function(t,res){
+//                console.log(res);
+                searinfo();
+            },function(t,err){
+                    console.log(err);
+                });
+    });
+}
+
+//显示数据
+function searinfo(){
+    db.transaction(function(tx){
+        tx.executeSql('select * from t_money',[],
+                function(t,res){
+//                    console.log(res);
+                    $("show").innerHTML = "";
+                    var allMoney = 0;
+//                    console.log(res.rows.item(1).m_date);
+                    for(var i=0;i<res.rows.length;i++){
+                        var xuhao = i+1;
+                       $("show").innerHTML += "<ul class='relist' id='"+"re_"+res.rows.item(i).m_id+"' onclick='wastelist();'>" +
+                               "<li style='width: 50px'>"+xuhao+"</li>" +
+                               "<li style='width: 200px'>"+res.rows.item(i).m_thing+"</li>"+
+                               "<li style='width: 200px'>"+res.rows.item(i).m_date+"</li>"+
+                               "<li style='width: 100px'>"+res.rows.item(i).m_money+"" +
+                               "<button onclick='dele("+res.rows.item(i).m_id+")' id='"+"re_"+res.rows.item(i).m_id+"'>"+"×"+"</button></li>"+
+                               "</ul>";
+//                       console.log(typeof res.rows.item(i).m_money);
+                       allMoney += res.rows.item(i).m_money;
+//                       console.log(allMoney);
+                    }
+                    $("allmoney").innerHTML = "￥"+allMoney;
+                },function(t,err){
+            console.log(err);
+        });
+    });
+}
+
+//删除数据
+function dele(req){
+//    var oevent=window.event || arguments[0];
+//    var node=oevent.srcElement || oevent.target;
+//    node.style.backgroundColor="#ccc";
+////    console.log(node.parentNode);
+//    tempId=node.id;
+////    console.log(tempId);
+//    idval = tempId.split("_")[1];
+//    console.log(idval);
+    db.transaction(function(tx){
+    tx.executeSql('delete from t_money where m_id=?',[req],
+            function (t,res){
+//                console.log(res);
+                searinfo();
+            },function(t,err){
+                console.log(err);
+            });  // executeSql 作为执行SQL的方法。
+        // 所有的sql 语句都在这里执行
+    });   // transaction使用一个回调函数作为参数
+}
+
+//查询数据，可以是事件、钱和时间
+function search(){
+    var searval = $("searval").value;
+//    var begdate = $("begdate").value;
+//    var begdatevale = begdate.split("-");
+//    var begval = begdatevale[0]+begdatevale[1]+begdatevale[2];
+//    var numbegval = parseInt(begval);
+//    var enddate = $("enddate").value;
+//    var enddatevale = enddate.split("-");
+//    var endval = enddatevale[0]+enddatevale[1]+enddatevale[2];
+//    var numendval = parseInt(endval);
+    if(searval == ""){
+        searinfo();
+    }else{
+        db.transaction(function(tx){
+            tx.executeSql('select * from t_money where m_thing LIKE ? or m_money LIKE ? or m_date like ? ',
+                    ["%"+searval+"%","%"+searval+"%","%"+searval+"%"],
+                    function (t,res){
+                        $("show").innerHTML = "";
+                        var allMoney = 0;
+//                    console.log(res.rows.item(1).m_date);
+                        for(var i=0;i<res.rows.length;i++){
+                            var xuhao = i+1;
+                            $("show").innerHTML += "<ul class='relist' id='"+"re_"+res.rows.item(i).m_id+"' onclick='wastelist();'>" +
+                                    "<li style='width: 50px'>"+xuhao+"</li>" +
+                                    "<li style='width: 200px'>"+res.rows.item(i).m_thing+"</li>"+
+                                    "<li style='width: 200px'>"+res.rows.item(i).m_date+"</li>"+
+                                    "<li style='width: 100px'>"+res.rows.item(i).m_money+"" +
+                                    "<button onclick='dele()' id='"+"re_"+res.rows.item(i).m_id+"'>"+"×"+"</button></li>"+
+                                    "</ul>";
+//                       console.log(typeof res.rows.item(i).m_money);
+                            allMoney += res.rows.item(i).m_money;
+//                       console.log(allMoney);
+                        }
+                        $("allmoney").innerHTML = "￥"+allMoney;
+                    },function(t,err){
+                        console.log(err);
+                    });  // executeSql 作为执行SQL的方法。
+            // 所有的sql 语句都在这里执行
+        });   // transaction使用一个回调函数作为参数
+    }
+}
+
+
+/**
+ * 获取修改的数据的ID
+ */
+function wastelist(){
+    var moneyrec = $("show").getElementsByTagName("ul");
+    for(var i = 0;i<moneyrec.length;i++){
+        moneyrec[i].style.backgroundColor = "#fff";
+    }
+    var oevent=window.event || arguments[0];
+    var node=oevent.srcElement || oevent.target;
+    node.parentNode.style.backgroundColor="#dddddd";
+//    console.log(node.parentNode);
+    tempId=node.parentNode.id;
+//    console.log(tempId);
+    idval = tempId.split("_")[1];
+//    console.log(idval);
+    if(idval == undefined || idval == 0){
+        $("increp").value = "+";
+    }else{
+        $("increp").value = "修改";
+    }
+}
+
+    /**
+     * 进行修改
+     * @param re1
+     * @param re2
+     * @param re3
+     */
+function repinfo(re1,re2,re3){
+    db.transaction(function(tx){
+        tx.executeSql('UPDATE t_money SET m_thing=?,m_date=?,m_money=? where m_id=?',[re1,re2,re3,idval],
+                function(t,res){
+//                    console.log(res);
+                    searinfo();
+                    idval = 0;
+                },function(t,err){
+                    console.log(err);
+                });
+    });
+}
+</script>
+</body>
+</html>

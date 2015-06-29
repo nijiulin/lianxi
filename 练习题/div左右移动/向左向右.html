@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul li{
+            list-style-type: none;
+            margin-left: 11px;
+        }
+        #quanga,#quangb{
+            width: 200px;
+            height: 350px;
+            border: 1px solid blue;
+        }
+        #quangb{
+            margin-left: 400px;
+            margin-top: -278px;
+
+        }
+        #quanga{
+            margin-top: 139px;
+            margin-left: 90px;
+        }
+        li{
+            width: 100px;
+            height: 100px;
+            background-color: #9cf;
+            margin: auto;
+            margin-top: 10px;
+        }
+        #q1,#q2{
+            width: 70px;
+            height: 25px;
+            background-color: #DDD;
+            font-size: 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+        #q1{
+            margin-top: -270px;
+            margin-left: 300px;
+        }
+        #q2{
+            margin-top: 148px;
+            margin-left: 300px;
+        }
+        #q1:hover{
+            color: red;
+        }
+        #q2:hover{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="quanga">
+    <ul id="qua">
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<div id="q1">向右</div>
+<div id="q2">向左</div>
+<div id="quangb">
+    <ul id="qub"></ul>
+</div>
+<script>
+    function $(id){
+        return document.getElementById(id);
+    }
+    $("q1").onclick = function(){
+        var fdiv = $("quanga").getElementsByTagName("li");
+        var clo = fdiv[0].cloneNode(true);
+        $("qua").removeChild(fdiv[0]);
+        $("qub").appendChild(clo);
+    };
+    $("q2").onclick = function(){
+        var fdiv = $("quangb").getElementsByTagName("li");
+        var clo = fdiv[0].cloneNode(true);
+        $("qub").removeChild(fdiv[0]);
+        $("qua").appendChild(clo);
+    }
+</script>
+</body>
+</html>

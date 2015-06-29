@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #div1{
+            margin: 100px auto;
+            width: 400px;
+        }
+        #div1 input{
+            width: 90px;
+            height: 30px;
+            background:#CCC;
+        }
+        #div1 .active{
+            background:yellow;
+        }
+        #div1 div{
+            margin: 5px auto;
+            width:400px;
+            height:300px;
+            background: #33cc53;
+            display:none;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">  <!--选项卡-->
+    <input class="active" type="button" value="音乐"/>
+    <input type="button" value="图片"/>
+    <input type="button" value="新闻"/>
+    <input type="button" value="微博"/>
+    <div style="display: block">愿得一人心</div>
+    <div>刘亦菲</div>
+    <div>马航</div>
+    <div>活塞获得七连胜，奥巴马发来贺电</div>
+</div>
+<script type="text/javascript">
+    var oDiv=document.getElementById('div1');
+    var aBtn=oDiv.getElementsByTagName('input');
+    var aDiv=oDiv.getElementsByTagName('div');
+    var i=0;
+    for(i=0;i<aBtn.length;i++){
+        aBtn[i].index=i;
+        aBtn[i].onclick = function(){
+            for(i=0;i<aBtn.length;i++){
+                aBtn[i].className = '';
+                aDiv[i].style.display = 'none'
+            }
+            this.className='active';
+            aDiv[this.index].style.display='block';
+        }
+    }
+</script>
+</body>
+</html>

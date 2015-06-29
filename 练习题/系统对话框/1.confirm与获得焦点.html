@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body onLoad="document.forms.main.text1.focus()">
+<form name="main">
+    <input type="text" name="text1"/>
+    <input type="button" name="submit" value="数据清空" onclick="return clear1()"/>
+</form>
+<script>
+    function clear1(){
+        var re = /^\s+$/g;
+        if(document.main.text1.value == ''||re.test(document.main.text1.value)){
+            alert('请输入内容');
+            document.forms.main.text1.focus();
+        }else if(confirm('确定要清空数据吗？')){
+            document.main.text1.value = '';
+            document.forms.main.text1.focus();
+        }
+    }
+</script>
+</body>
+</html>

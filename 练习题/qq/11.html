@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .one{
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 75px;
+            left: 0;
+            background: url("img/4.jpg") no-repeat;
+            background-size: auto 100%;
+            z-index: 1;
+        }
+        .two,.three,.four,.five{
+            z-index: 4;
+            width: 100%;
+            overflow: hidden;
+            background-color: #ffffff;
+            position: absolute;
+            left: 0;
+        }
+        .two{
+            top:0
+        }
+        .three{
+            top: 1100px;
+            height: 500px;
+        }
+        .four{
+            top: 2000px;
+            height: 500px;
+        }
+        .five{
+            top: 2900px;
+            height: 800px;
+        }
+        .head{
+            height: 55px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 99;
+            width: 100%;
+            border-bottom: 1px solid #f1f1f1;
+            display: none;
+            overflow: hidden;
+        }
+        .head img{
+            height: 55px;
+            width: 100%;
+        }
+        .lun{
+            overflow: hidden;
+            height: 420px;
+            width: 100%;
+            position: relative;
+        }
+        .lun .lun-ul li{
+            height: 420px;
+            width: 100%;
+            list-style: none;
+            position: absolute;
+            top: 0px;
+        }
+        .circle{
+            position: absolute;
+            z-index: 6;
+            width: 56px;
+            height: 20px;
+            bottom: 20px;
+            left: 50%;
+            margin-left: -28px;
+        }
+        .circle ul{
+            width: 100px;
+            height: 12px;
+        }
+        .circle li{
+            float: left;
+            margin: 4px 12px 0 0;
+            list-style: none;
+            width: 10px;
+            height: 10px;
+            background-color: #ffffff;
+            border-radius: 50%;
+        }
+        .circle ul li.on{
+            border-radius: 50%;
+            background-color: transparent;
+            border: 1px solid #ffffff;
+            margin: 3px 12px 0 0;
+
+        }
+        .bot-img img{
+            float: left;
+            height: 280px;
+            width: auto;
+        }
+        .bot-img{
+            float: left;
+            width: 100%;
+            overflow: hidden;
+        }
+        .head-shang{
+            width: 100%;
+            height: 55px;
+            overflow: hidden;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 66;
+        }
+        .head-shang img{
+            width: 100%;
+            height: 55px;
+        }
+        .three img{
+            position: absolute;
+            left: 40px;
+            top: -100px;
+            height: 600px;
+        }
+        .img-four{
+            position: absolute;
+            top: 0;
+            right: 140px;
+        }
+          .im-one{
+            position: absolute;
+            width: 0;
+            z-index: 99;
+            left:0;
+            top: 0;
+        }
+        .img-four .im-two{
+            position: relative;
+            width: 328px;
+        }
+        #four-box{
+            position: absolute;
+            left: 32px;
+            top: 220px;
+            width: 200px;
+            height: 80px;
+            z-index: 999;
+        }
+        .bar{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0;
+            z-index: 2222;
+            height: 3px;
+            background: #5be10b;
+        }
+        .bartop{
+            position: absolute;
+            left: 58px;
+            top: 61px;
+            width: 0;
+            z-index: 220;
+            height: 3px;
+            background: #e6e6e6;
+        }
+    .pop-right{
+        position: absolute;
+        width: 180px;
+        height: 140px;
+        overflow: hidden;
+        right: 34px;
+        top: 320px;
+    }
+    .pop-right img{
+        position: absolute;
+        /*width: 130px;*/
+        right: 0;
+        margin-top: 220px;
+        width: 0;
+    }
+    .footer{
+        width: 100%;
+        height: 348px;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        background: #2a2a2a;
+        font-size: 0.75em;
+    }
+    .san{
+        position: absolute;
+        left: 0;
+        top: 280px;
+        width: 100%;
+        height: 140px;
+        padding-left: 120px;
+    }
+    .san div{
+        width: 130px;
+        height: 130px;
+        display: inline-block;
+        margin-right: 25px;
+
+    }
+    .san .yuan1{
+        position: absolute;
+        top: 0;
+        left: 120px;
+       }
+        .san .yuan2{
+            position: absolute;
+            top: 0;
+            left: 290px;
+        }
+        .san .yuan3{
+            position: absolute;
+            top: 0;
+            left: 460px;
+        }
+    .san img{
+        margin-top: 75px;
+        margin-left: 75px;
+        width: 0;
+    }
+    </style>
+</head>
+<body>
+<div class="head">
+    <img src="qq3.png" alt=""/>
+</div>
+<div class="one">
+
+</div>
+<div class="two">
+    <div class="head-shang">
+        <img src="qq3.png" alt=""/>
+    </div>
+    <!--轮播图-->
+    <div class="lun">
+        <ul class="lun-ul">
+            <li style="z-index: 5;background: url('banner/banner1.jpg');background-size: auto 420px">
+                <!--<img src="banner/banner1.jpg" alt=""/>-->
+            </li>
+            <li style="background: url('banner/banner2.jpg');background-size: auto 420px">
+                <!--<img src="banner/banner2.jpg" alt=""/>-->
+            </li>
+            <li style="background: url('banner/banner3.jpg');background-size: auto 420px">
+                <!--<img src="banner/banner3.jpg" alt=""/>-->
+            </li>
+        </ul>
+        <div class="circle">
+            <ul>
+                <li class="on"></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+    <!--轮播图结束-->
+    <div class="bot-img">
+        <img src="brand.png" alt=""/>
+    </div>
+</div>
+<div class="three">
+    <img src="phone.png" alt=""/>
+
+</div>
+<div class="four">
+    <div class="img-four">
+        <div id="four-box">
+        <img class="im-one" src="wenjian.png" alt=""/>
+
+          <div class="bartop">
+              <div class="bar"></div>
+          </div>
+        </div>
+        <img id="box" class="im-two" src="shouji.png" alt=""/>
+        <div class="pop-right">
+            <img src="pop.png" alt=""/>
+        </div>
+    </div>
+</div>
+<div class="five">
+    <div class="san">
+       <div class="yuan1">
+           <img src="yuan1.png" alt=""/>
+       </div>
+        <div class="yuan2">
+            <img src="yuan2.png" alt=""/>
+        </div>
+        <div class="yuan3">
+            <img src="yuan3.png" alt=""/>
+        </div>
+    </div>
+    <div class="footer">
+
+    </div>
+</div>
+<script src="jquery.js"></script>
+<script>
+ //滚动开始
+    $(window).scroll(function(){
+          var top = $(window).scrollTop();
+            console.log(top);
+        //圆
+        if(top>2668){
+            $(".yuan1 img").stop().animate({
+                marginTop:0,
+                marginLeft:0,
+                width:"130px"
+            },200,function(){
+                $(".yuan2 img").stop().animate({
+                    marginTop:0,
+                    marginLeft:0,
+                    width:"130px"
+                },200,function(){
+                    $(".yuan3 img").stop().animate({
+                        marginTop:0,
+                        marginLeft:0,
+                        width:"130px"
+                    },200)
+                })
+            })
+        }
+        if(top<2668){
+            $(".yuan1 img").stop().animate({
+                marginTop:"65px",
+                marginLeft:"65px",
+                width:0
+            },0,function(){
+                $(".yuan2 img").stop().animate({
+                    marginTop:"65px",
+                    marginLeft:"65px",
+                    width:0
+                },0,function(){
+                    $(".yuan3 img").stop().animate({
+                        marginTop:"65px",
+                        marginLeft:"65px",
+                        width:0
+                    },0)
+                })
+            })
+        }
+        //圆结束
+        //手机消息动画
+        if(top>1700){
+            setTimeout(function(){
+                $(".im-one").stop().animate({
+                    width:"235px"
+                },200,function(){
+                    $(".bartop").stop().animate({
+                        width:"165px"
+                    },10,function(){
+                        $(".bar").stop().animate({
+                            width:"165px"
+                        },600,function(){
+                            $(".pop-right img").stop().animate({
+                                marginTop:0,
+                                width:"130px"
+                            },200)
+                        })
+                    })
+                })
+            },300)
+        }
+        if(top<=1690){
+            $(".im-one").stop().animate({
+                width:0
+            },0,function(){
+                $(".bartop").stop().animate({
+                    width:0
+                },0,function(){
+                    $(".bar").stop().animate({
+                        width:0
+                    },0,function(){
+                        $(".pop-right img").stop().animate({
+                            marginTop:"220px",
+                            width:0
+                        },0)
+                    })
+                })
+            })
+        }
+//手机消息动画结束
+//背景图片切换
+        if(top>=0){
+            var bili1 = top/700;
+            if(bili1>=1.5){
+                bili1 = 1.5;
+            }
+            $(".one").css({
+                "background-image":"url(img/4.jpg)",
+                "top":75*(1-bili1)
+            })
+        }
+        if(top>=1100){
+            var bili2 = top/1600;
+            if(bili2>=1.5){
+                bili2 = 1.5;
+            }
+            $(".one").css({
+                "background-image":"url(img/5.jpg)",
+                "top":75*(1-bili2)
+            })
+        }
+        if(top>=2000){
+            var bili3 = top/2500;
+            if(bili3>=1.5){
+                bili3 = 1.5;
+            }
+            $(".one").css({
+                "background-image":"url(img/6.jpg)",
+                "top":75*(1-bili3)
+            })
+        }
+   //背景图片切换结束
+        //固定头部
+        if(top>=645){
+            $(".head").fadeIn(300);
+        }else{
+            $(".head").fadeOut(100);
+        }
+    });
+
+
+
+//图片轮播
+ var _index = 0;
+ var timer = null;
+ $(".circle ul li").hover(function(){
+     clearInterval(timer);
+     $(this).addClass("on").siblings().removeClass("on");
+     _index = $(this).index();
+     $(".lun .lun-ul li").eq(_index).fadeIn().siblings().fadeOut();
+ },function(){
+     auto_play();
+ });
+
+ function auto_play(){
+     timer = setInterval(function(){
+         _index++;
+         if(_index>2){_index = 0}
+         $(".circle ul li").eq(_index).addClass("on").siblings().removeClass("on");
+         $(".lun .lun-ul li").eq(_index).fadeIn().siblings().fadeOut();
+     },2000);
+ }
+ auto_play();
+</script>
+</body>
+</html>

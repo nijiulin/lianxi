@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>购物车</title>
+	<link rel="stylesheet" href="css/reset.css" />
+	<link rel="stylesheet" href="css/cart.css" />
+	<script src="js/NOTEK.js" type="text/javascript"></script>
+	<script src="js/demo.js" type="text/javascript"></script>
+</head>
+<body>
+	<div id="cart" class="w1000">
+		<div class="logo"><a href="#"></a></div>
+		<div class="pro_bar">
+			<ul class="bar_list">
+				<li class="one">确认订单</li>
+				<li class="two">确认支付方式</li>
+				<li class="three nomr">支付成功</li>
+			</ul>
+		</div>
+		<div class="cart_item">
+			<div class="top_bg"></div>
+			<h3>我的购物车</h3>
+			<ul class="cart_name">
+				<li class="w1">
+					<input type="checkbox" name="" id="all" class="all" checked>	
+					<label for="all">全选</label>		
+				</li>
+				<li class="w2">商品</li>
+				<li class="w1">价格</li>
+				<li class="w3">数量</li>
+				<li class="w1 noborder">操作</li>
+				<p class="clear"></p>
+			</ul>
+			<p class="clear"></p>
+			<div class="listbox">
+				<!-- 一个商家 -->
+				<div class="name">
+					<h4>银杏酒楼</h4>
+					<!-- 一条数据 -->
+					<ul class="one_cart_info">
+						<li class="w1"><input type="checkbox" name="" class="check"></li>
+						<li class="w2">
+							<img src="images/cart_item_img.jpg" alt="">
+							<span class="dish_name">火锅肉</span>
+						</li>
+						<li class="w1">$<em class="price">56.12</em></li>
+						<li class="w3">
+							<div class="add_min">
+								<a href="javascript:;" class="min">&nbsp;</a>
+								<span class="show">2</span>
+								<a href="javascript:;" class="add">&nbsp;</a>
+							</div>
+						</li>
+						<li class="w1 del noborder">删除</li>
+						<p class="clear"></p>
+					</ul>
+					<!-- 一条数据 -->
+					<ul class="one_cart_info">
+						<li class="w1"><input type="checkbox" name="" class="check"></li>
+						<li class="w2">
+							<img src="images/cart_item_img.jpg" alt="">
+							<span class="dish_name">火锅肉</span>
+						</li>
+						<li class="w1">$<em class="price">31.51</em></li>
+						<li class="w3">
+							<div class="add_min">
+								<a href="javascript:;" class="min">&nbsp;</a>
+								<span class="show">1</span>
+								<a href="javascript:;" class="add">&nbsp;</a>
+							</div>
+						</li>
+						<li class="w1 del noborder">删除</li>
+						<P class="clear"></P>
+					</ul>
+				</div>
+
+				<!-- 一个商家 -->
+				<div class="name">
+					<h4>银杏酒楼</h4>
+					<!-- 一条数据 -->
+					<ul class="one_cart_info">
+						<li class="w1"><input type="checkbox" name="" class="check"></li>
+						<li class="w2">
+							<img src="images/cart_item_img.jpg" alt="">
+							<span class="dish_name">火锅肉</span>
+						</li>
+						<li class="w1">$<em class="price">22.19</em></li>
+						<li class="w3">
+							<div class="add_min">
+								<a href="javascript:;" class="min">&nbsp;</a>
+								<span class="show">1</span>
+								<a href="javascript:;" class="add">&nbsp;</a>
+							</div>
+						</li>
+						<li class="w1 del noborder">删除</li>
+						<p class="clear"></p>
+					</ul>
+					<!-- 一条数据 -->
+					<ul class="one_cart_info">
+						<li class="w1"><input type="checkbox" name="" class="check"></li>
+						<li class="w2">
+							<img src="images/cart_item_img.jpg" alt="">
+							<span class="dish_name">火锅肉</span>
+						</li>
+						<li class="w1">$<em class="price">22.27</em></li>
+						<li class="w3">
+							<div class="add_min">
+								<a href="javascript:;" class="min">&nbsp;</a>
+								<span class="show">1</span>
+								<a href="javascript:;" class="add">&nbsp;</a>
+							</div>
+						</li>
+						<li class="w1 del noborder">删除</li>
+						<P class="clear"></P>
+					</ul>
+				</div>
+				
+			</div>
+			<ul class="opera">
+				<li class="del_sel">删除所选商品</li>
+				<li class="stroe_price">总计：<span>￥<em>88.00</em></span></li>
+				<li class="stroe_num"><em>0</em>件商品</li>
+				<p class="clear"></p>
+			</ul>
+		</div>
+		<!-- 结算按钮 -->
+		<ul class="settle">
+			<li class="left"><button class="conu">继续购物</button></li>
+			<li class="right mr"><button class="sett">去结算</button></li>
+			<li class="right"><button class="linedown">线下支付</button></li>
+			<p class="clear"></p>
+		</ul>
+		<p class="clear"></p>
+		<!-- 确认删除框 -->
+		<div class="yesorno">
+			<p class="msg"></p>
+			<a href="javascript:;" class="define">确定</a>
+			<a href="javascript:;" class="cancel">取消</a>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8"/>
+    <style type="text/css">
+        body,h3,ul,li{
+            margin: 0;
+            padding: 0;
+        }
+        .menu h3{
+            width: 300px;
+            height: 35px;
+            line-height: 35px;
+            font-size: 24px;
+            background-color: #9cf;
+            border-top:2px solid #333;
+            border-bottom:2px solid #eee;
+        }
+        .menu ul li{
+            width: 300px;
+            height: 26px;
+            line-height: 26px;
+            font-size: 18px;
+            background-color: #c9f;
+            border-bottom:1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+  <div class="menu">
+      <h3>dsfgdf</h3>
+          <ul>
+              <li>01-001a</li>
+              <li>02-002a</li>
+              <li>03-003a</li>
+          </ul>
+
+      <h3>dfgd</h3>
+          <ul>
+              <li>01-001a</li>
+              <li>02-002a</li>
+              <li>03-003a</li>
+          </ul>
+      <h3>dfgd</h3>
+      <ul>
+          <li>01-001a</li>
+          <li>02-002a</li>
+          <li>03-003a</li>
+      </ul>
+  </div>
+
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript">
+    var tempthis =$('.menu ul:first');
+    $('.menu ul:not(:first)').slideToggle(500);
+     $('.menu h3').on('click',function(){
+         tempthis.slideToggle(500);
+         tempthis = $(this).next();
+           $(this).next().slideToggle(500);
+     });
+</script>
+</body>
+</html>

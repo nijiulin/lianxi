@@ -1,0 +1,107 @@
+/* http://www.miaov.com/ - coding: leo - QQ: 20907961 - time: 2010/8/28 */
+
+* {
+    padding: 0;
+    margin: 0;
+   }
+li {
+    list-style: none;
+   }
+img {
+    border: none;
+    }
+body {
+    background: #ecfaff;
+     }
+
+.box {
+    width: 600px;
+    height: 337px;
+    position: relative;
+    margin: 150px auto 0;
+    background: #ccc;
+    overflow:hidden;
+    }
+.box ol {
+    position: absolute;
+    right: 15px;
+    bottom: 12px;
+    z-index: 2;
+     }
+.box ol li {
+    float: left;
+    margin-right: 3px;
+    display: inline;
+    cursor: pointer;
+    background: #fcf2cf;
+    border: 1px solid #f47500;
+    padding: 2px 6px;
+    color: #d94b01;
+    font-family: arial;
+    font-size: 12px;
+    }
+.box .active {
+    padding: 3px 8px;
+    font-weight: bold;
+    color: #ffffff;
+    background: #ffb442;
+    position: relative;
+    bottom: 2px;
+    }
+
+.box ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /*z-index: 1;*/
+     }
+.box ul li {
+    width: 600px;
+    height: 337px;
+    float: left;
+    }
+.box ul img {
+    float: left;
+    width: 600px;
+    height: 337px;
+     }
+
+.box p{
+    cursor: pointer;
+    width: 40px;
+    height: 337px;
+    position: absolute;
+    background: url("pic/icon-slides.png") no-repeat;
+    display: none;
+    z-index: 1;
+}
+.box .prev{
+     position: absolute;
+     left: 10px;
+     top: 0px;
+     display: none;
+          }
+.box .next {
+     position: absolute;
+     right: 10px;
+     top: 0px;
+     display: none;
+           }
+#play .prev:hover{
+    background-position: 0 center;
+}
+#play .next:hover{
+    background-position: -43px center;
+}
+
+#play .prev{
+    background-position: -85px center;
+    left: 0;
+}
+#play .next{
+    background-position: -123px center;
+    right: 0;
+}
+#play:hover .prev,#play:hover .next{
+    display: block;
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>0</title>
+		<meta name="author" content="郑印" />
+		<style type="text/css">
+			*{
+                margin:0px;
+                padding:0px;
+            }
+			body{
+                background:#2e323a;
+            }
+			#nav{
+				width:469px;
+				height:38px;
+				background:#2e323a;
+				border:1px solid #22252c;
+				margin:20px auto;
+				color:#e5e5e5;
+
+			}
+			#nav .box{
+				width:360px;
+				height:38px;
+				margin:0px auto;
+				position:relative;
+				background:#2e323a;
+				
+			}
+			#nav .box span{
+				width:57px;
+				height:38px;
+				display:block;
+				line-height:38px;
+				text-align:center;
+				font-size:14px;
+				cursor:pointer;
+				float:left;
+				
+			}
+			#nav .box i{
+				display:block;
+				width:1px;
+				height:14px;
+				background:#e2e2e2;
+				float:left;
+				margin-top:13px;
+			}
+			#nav .active{
+				color:#f37f0b;
+			}
+			#ico{
+				width:57px;
+				height:5px;
+				background:url(./images/ico.png) no-repeat 0px 0px;
+				position:absolute;
+				left:0px;
+				top:0px;
+			}
+		</style>
+
+	</head>
+	<body>
+		<div id="nav">
+			<div id="box" class='box'>
+				<span class="active">文章</span><i> </i>
+				<span>图片</span><i> </i>
+				<span>器材</span><i> </i>
+				<span>论坛</span><i> </i>
+				<span>相册</span><i> </i>
+				<span>交易</span>
+				<div id="ico" >
+					 
+				</div>
+			</div>
+		</div>
+        <script type="text/javascript" src="js/jquery.js"> </script>
+
+        <script type="text/javascript">
+            $("#nav .box span").hover(function(){
+                var index1 = $("#nav .box span").index(this);
+                $(this).addClass("active").siblings().removeClass("active");
+                $("#ico").stop(true).animate({
+                    left:index1*57+'px'
+                },500)
+            })
+        </script>
+	</body>
+</html>
+

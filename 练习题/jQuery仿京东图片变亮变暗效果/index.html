@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 844px;
+            height: 540px;
+            /*border: 1px solid blue;*/
+            margin: 50px auto;
+        }
+        div ul li{
+            position: relative;
+            list-style: none;
+            float: left;
+            width:278px;
+            height:180px;
+            cursor: pointer;
+            overflow: hidden;
+            /*z-index: 3;*/
+
+        }
+        div ul li img{
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        div ul li div.mask {
+            position:absolute;
+            background:#000;
+            opacity:0;
+            filter:alpha(opacity=0);
+            left:0;
+            top:-49px;
+            height: 180px;
+            width:278px;}
+
+        /*div ul li div.m1{*/
+            /*height:180px;*/
+        /*}*/
+        p{
+            position: absolute;
+            z-index: 1;
+            display: block;
+            width: 100px;
+            height: 25px;
+            /*background: red;*/
+        }
+    </style>
+</head>
+<body>
+  <div>
+      <ul>
+          <li>
+              <img src="images/s1.jpg" alt=""/>
+              <div class="mask m1"></div>
+              <p>商品说明</p>
+          </li>
+          <li>
+              <img src="images/s2.jpg" alt=""/>
+              <div class="mask m1"></div>
+              <p>商品说明</p>
+          </li>
+          <li>
+              <img src="images/s3.jpg" alt=""/>
+              <div class="mask m1"></div>
+              <p>商品说明</p>
+          </li>
+          <li>
+              <img src="images/s4.jpg" alt=""/>
+              <div class="mask m1"></div>
+              <p>商品说明</p>
+          </li>
+          <li>
+              <img src="images/s5.jpg" alt=""/>
+              <div class="mask m1"></div>
+              <p>商品说明</p>
+          </li>
+          <li>
+              <img src="images/s6.jpg" alt=""/>
+              <div class="mask m1"></div>
+              <p>商品说明</p>
+          </li>
+          <li>
+              <img src="images/s7.jpg" alt=""/>
+              <div class="mask m1"></div>
+              <p>商品说明</p>
+          </li>
+          <li>
+              <img src="images/s8.jpg" alt=""/>
+              <div class="mask m1"></div>
+              <p>商品说明</p>
+          </li>
+          <li>
+              <img src="images/s9.jpg" alt=""/>
+              <div class="mask m1"></div>
+              <p>商品说明</p>
+          </li>
+      </ul>
+  </div>
+  <script src="js/jquery-1.11.1.min.js"></script>
+  <script>
+$(function() {
+    var i = 0;
+    $("div").find("li").each(function() {
+        $(this).hover(function() {
+
+                    //stop  停止所有在指定元素上正在运行的动画。
+
+                    $(this).siblings().find(".mask").stop();
+                    $(this).siblings().find(".mask").fadeTo("fast",0.3);
+                    $(this).find("img").stop(true).animate({
+                        left:"-10px"
+                    },500)
+                },
+                function() {
+                    $(this).siblings().find(".mask").stop();
+                    $(this).siblings().find(".mask").fadeTo("fast",0);
+                    $(this).find("img").stop(true).animate({
+                        left:"0px"
+                    },500)
+                });
+    });
+})
+  </script>
+
+</body>
+</html>

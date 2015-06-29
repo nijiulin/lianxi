@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #div1{
+            margin: 100px auto;
+            width: 400px;
+        }
+        #div1 input{
+            width: 90px;
+            height: 30px;
+            background:#CCC;
+        }
+        #div1 .active{
+            background:yellow;
+        }
+        #div1 div{
+            margin: 5px auto;
+            width:400px;
+            height:300px;
+            background: #33cc53;
+            display:none;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    <input class="active" type="button" value="音乐"/>
+    <input type="button" value="图片"/>
+    <input type="button" value="新闻"/>
+    <input type="button" value="微博"/>
+
+    <div style="display: block">愿得一人心</div>
+    <div>刘亦菲</div>
+    <div>马航</div>
+    <div>活塞获得七连胜，奥巴马发来贺电</div>
+</div>
+<script>
+    var oTab=new TabSwitch('div1');
+    function TabSwitch(id)
+    {
+        var oDiv=document.getElementById(id);
+        this.aBtn=oDiv.getElementsByTagName('input');
+        this.aDiv=oDiv.getElementsByTagName('div');
+        var i=0;
+
+        var _this=this;
+
+        for(i=0;i<this.aBtn.length;i++)
+        {
+            this.aBtn[i].index=i;
+            this.aBtn[i].onclick=function ()
+            {
+                _this.tab(this);
+            };
+        }
+    }
+
+    TabSwitch.prototype.tab=function (oBtn)
+    {
+        for(i=0;i<this.aBtn.length;i++)
+        {
+            this.aBtn[i].className='';
+            this.aDiv[i].style.display='none';
+        }
+        oBtn.className='active';
+        this.aDiv[oBtn.index].style.display='block';
+    };
+</script>
+</body>
+</html>

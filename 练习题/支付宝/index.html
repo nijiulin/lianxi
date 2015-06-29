@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            position: relative;
+        }
+        body,html{
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+        .box{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .box div{
+            width: 100%;
+            height: 100%;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .box .one{
+            background-image: url("1.jpg");
+        }
+        .box .two{
+            background-image: url("2.jpg");
+        }
+        .box .three{
+            background-image: url("3.jpg");
+        }
+        .box .four{
+            background-image: url("4.jpg");
+        }
+        .box .five{
+            background-image: url("5.jpg");
+        }
+        .right{
+            width: 12px;
+            height: 136px;
+            position: absolute;
+            top: 50%;
+            margin-top: -68px;
+            right: 40px;
+        }
+        .right ul li{
+            cursor: pointer;
+            list-style: none;
+            width: 10px;
+            height: 10px;
+            border: 1px #cccccc solid;
+            border-radius: 50%;
+            margin-top: 15px;
+        }
+        .right ul li.on{
+            background-color: #0cf;
+            border-color:  #0cf;
+        }
+        .one video{
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 222222;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="one">
+
+    </div>
+    <div class="two" id="two">
+
+    </div>
+    <div class="three"></div>
+    <div class="four"></div>
+    <div class="five"></div>
+
+</div>
+<div class="right">
+    <ul id="ul">
+        <li class="on"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script src="../jquery-1.7.2.min.js"></script>
+<script>
+var n = 0;
+var num = 0;
+var index = 0;
+
+    $(".right ul li").click(function(){
+       var index = $(this).index();
+        $(this).addClass("on").siblings().removeClass("on");
+        n = 12*index; //关键
+        $(".box").stop().animate({
+            top:-(index)*100 + "%"
+        },"ease");
+    });
+
+
+
+    var scrollFunc = function (e){
+        var direct = 0;
+        e = e || window.event;
+        var num = Math.floor(n/12);
+        if (e.wheelDelta) {  //判断浏览器IE，谷歌滑轮事件
+
+      ////////////////当滑轮向下滚动时
+    if (e.wheelDelta < 0) { //当滑轮向下滚动时
+                    n++;
+                    if(n>58){
+                        n = 58
+                    }
+                    if(num>=4){
+                        num = 4
+                    }
+                    if(num < 0){
+                        num = 0
+                    }
+                  console.log(n);
+                  console.log(num);
+        $(".right ul li").eq(num).addClass("on").siblings().removeClass("on");
+                $(".box").stop().animate({
+                    top:-(num)*100 + "%"
+                },"ease");
+            }
+
+
+
+     ///////////////当滑轮向上滚动时
+            if (e.wheelDelta > 0){ //当滑轮向上滚动时
+                n--;
+                if(n<0){
+                    n = 0
+                }
+                if(num>4){
+                    num = 4
+                }
+                if(num < 0){
+                    num = 0
+                }
+//                console.log(n);
+//                console.log(num);
+                $(".right ul li").eq(num).addClass("on").siblings().removeClass("on");
+                $(".box").stop().animate({
+                    top:-(num)*100 + "%"
+                },"ease");
+            }
+        } else if (e.detail) {  //Firefox滑轮事件
+            if (e.detail> 0) { //当滑轮向上滚动时
+                console.log("滑轮向上滚动");
+                n++;
+                if(n>58){
+                    n = 58
+                }
+                if(num>=4){
+                    num = 4
+                }
+                if(num < 0){
+                    num = 0
+                }
+                console.log(n);
+                console.log(num);
+                $(".right ul li").eq(num).addClass("on").siblings().removeClass("on");
+                $(".box").stop().animate({
+                    top:-(num)*100 + "%"
+                },"ease");
+
+            }
+            if (e.detail< 0) { //当滑轮向下滚动时
+                console.log("滑轮向下滚动");
+                n--;
+                if(n<0){
+                    n = 0
+                }
+                if(num>4){
+                    num = 4
+                }
+                if(num < 0){
+                    num = 0
+                }
+                console.log(n);
+                console.log(num);
+
+                $(".right ul li").eq(num).addClass("on").siblings().removeClass("on");
+                $(".box").stop().animate({
+                    top:-(num)*100 + "%"
+                },"ease");
+
+            }
+        }
+    };
+
+    //给页面绑定滑轮滚动事件
+    if (document.addEventListener){
+        document.addEventListener('DOMMouseScroll', scrollFunc, false);
+    }
+    //滚动滑轮触发scrollFunc方法
+    window.onmousewheel = document.onmousewheel = scrollFunc;
+
+</script>
+</body>
+</html>

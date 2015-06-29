@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/css.css"/>
+    <script src="js/js.js"></script>
+</head>
+<body>
+<div class="roll" id="roll">
+    <a class="btn_left" href=""></a>
+    <a class="btn_right" href=""></a>
+    <div class="wrap">
+        <ul>
+            <li><a href=""><img src="ing/1.jpg" alt=""/></a></li>
+            <li><a href=""><img src="ing/2.jpg" alt=""/></a></li>
+            <li><a href=""><img src="ing/3.jpg" alt=""/></a></li>
+            <li><a href=""><img src="ing/4.jpg" alt=""/></a></li>
+            <li><a href=""><img src="ing/5.jpg" alt=""/></a></li>
+            <li><a href=""><img src="ing/6.jpg" alt=""/></a></li>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var odiv = document.getElementById("roll");
+    var oul = odiv.getElementsByTagName("ul")[0];
+    var ali = oul.getElementsByTagName("li");
+    var abtn = odiv.getElementsByTagName("a");
+    var speed = 5;
+    var timer = null;
+    oul.style.width = ali[0].offsetWidth*ali.length + "px";
+      timer = setInterval(function(){
+        oul.style.left = oul.offsetLeft - speed + "px";
+          console.log(oul.offsetLeft)
+         if(oul.offsetLeft<-oul.offsetWidth/2){
+             oul.style.left = "0px";
+         }else if(oul.offsetLeft>0){
+             oul.style.left = -oul.offsetWidth/2 + "px";
+         }
+    },30);
+     abtn[0].onmouseover = function(){
+         speed = 5
+    };
+    abtn[1].onmouseover = function(){
+        speed = -5
+    };
+    oul.onmouseover = function(){
+        clearInterval(timer);
+    };
+    oul.onmouseout = function(){
+        timer = setInterval(function(){
+            oul.style.left = oul.offsetLeft - speed + "px";
+            if(oul.offsetLeft<-oul.offsetWidth/2){
+                oul.style.left = "0px";
+            }else if(oul.offsetLeft>0){
+                oul.style.left = -oul.offsetWidth/2 + "px";
+            }
+        },30);
+    }
+</script>
+</body>
+</html>

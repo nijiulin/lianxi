@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="button" onclick="disp_prompt()"
+       value="Display a prompt box" />
+<script type="text/javascript">
+    function disp_prompt()
+    {
+        var re = /^\s+$/g;
+        var name=prompt("Please enter your name","");
+        if(name == ''||re.test(name)){
+            alert('请输入内容');
+
+
+        }else{
+            document.write("Hello " + name + "!")
+        }
+//        if (name!=null && name!="")
+//        {
+//            document.write("Hello " + name + "!")
+//        }
+    }
+</script>
+</body>
+</html>

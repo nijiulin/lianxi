@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8"/>
+    <style type="text/css">
+        body,ul,li,img{
+            margin: 0;
+            padding: 0;
+        }
+        ul li{
+            list-style: none;
+            font-size: 25px;
+
+        }
+        .numlist{
+            position: fixed;
+            top: 20px;
+            left: 20px;
+
+        }
+        .numlist li{
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #16a085;
+            text-align: center;
+            line-height: 30px;
+        }
+        .scroll{
+            margin-left: 100px;
+        }
+        .scroll li{
+            height: 500px;
+            background-color: #de55d7;
+            border-bottom:3px solid #000;
+        }
+    </style>
+</head>
+<body>
+<ul class="numlist">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+</ul>
+<ul class="scroll">
+    <li>1<img src="images/1.jpg" alt=""></li>
+    <li>2<img src="images/2.jpg" alt=""></li>
+    <li>3<img src="images/3.jpg" alt=""></li>
+    <li>4<img src="images/4.jpg" alt=""></li>
+    <li>5<img src="images/5.jpg" alt=""></li>
+    <li>6<img src="images/6.jpg" alt=""></li>
+    <li>7<img src="images/7.jpg" alt=""></li>
+    <li>8<img src="images/8.jpg" alt=""></li>
+</ul>
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript">
+  $('.numlist li').on('click',function(){
+       //   获得第几个li
+     var tempindex = $(".numlist li").index($(this));
+
+
+      //    获得对应 图片的位置
+   var tempnode = $('.scroll li').eq(tempindex).children(":first");
+
+      //   设置动画
+      //  起点
+        var begin = $(window).scrollTop();
+        var end = tempnode.offset().top;
+        var tempup = (end-begin)/10;
+        var  show = begin+tempup;
+        var tempid = setInterval(function(){
+           console.log(begin);
+           begin+=tempup;
+
+            $(this).scrollTop(begin);
+
+           if(Math.abs(end-begin)<=10){
+               clearInterval(tempid);
+           }
+       },100);
+
+
+  });
+</script>
+</body>
+</html>
